@@ -1,334 +1,294 @@
-# Sales ETL Pipeline - Complete Project Explanation
+# Sales ETL Pipeline - Project Explanation
 
 # 1. Project Objective
-- Why this project was created
-- Problem statement
-- Expected output
+
+The objective of this project is to build a simple ETL pipeline using PySpark. The pipeline reads sales data from a CSV file, cleans the data, transforms it, calculates total sales, and saves the output in Parquet format.
 
 ---
 
 # 2. Project Overview
-- What is ETL?
-- What does this project do?
-- End-to-end workflow
+
+This project demonstrates the basic ETL (Extract, Transform, Load) process using PySpark.
+
+Workflow:
+
+CSV File → Read Data → Clean Data → Transform Data → Aggregate Data → Save as Parquet
 
 ---
 
 # 3. Business Scenario
-- Real-world use case
-- Why companies need this pipeline
+
+A company stores daily sales data in CSV files. Before creating reports, the data must be cleaned, transformed, and stored in an optimized format for faster analysis.
 
 ---
 
 # 4. Technologies Used
+
 - Python
 - PySpark
+- PyTest
 - Git
 - GitHub
 - GitHub Actions
-- PyTest
 - Parquet
 
 ---
 
 # 5. Project Structure
-- Folder explanation
-- File explanation
+
+- data/ → Stores input CSV files.
+- src/ → Contains ETL code.
+- tests/ → Contains unit tests.
+- docs/ → Project documentation.
+- .github/ → GitHub Actions workflow.
+- README.md → Project overview.
+- requirements.txt → Project dependencies.
+- .gitignore → Ignore unnecessary files.
 
 ---
 
 # 6. Dataset Information
-- Source
-- Columns
-- Data Types
-- Sample Data
+
+Input file: sales.csv
+
+Columns:
+- Order_ID
+- Product
+- Category
+- Quantity
+- Price
 
 ---
 
-# 7. ETL Architecture Diagram
+# 7. ETL Workflow
 
-CSV
-↓
-Extract
-↓
-Clean
-↓
-Transform
-↓
-Aggregate
-↓
-Save as Parquet
-↓
-Testing
-↓
-GitHub Actions
+1. Read CSV file.
+2. Remove duplicate records.
+3. Calculate Total Amount.
+4. Group sales by category.
+5. Save data as Parquet.
 
 ---
 
-# 8. Project Workflow
-Step-by-step explanation
-
----
-
-# 9. Spark Session
+# 8. Spark Session
 
 ## Purpose
 
-## Code
-
-## Line by Line Explanation
-
-## Example
+Creates a Spark application.
 
 ## Why We Used It
 
-## Alternative Approaches
+SparkSession is the entry point for all PySpark operations.
 
-## Why Alternative Was Not Used
+## Alternative
 
-## Interview Questions
+SparkContext
+
+## Why Not Used
+
+SparkSession is the modern and recommended approach.
 
 ---
 
-# 10. Reading CSV
+# 9. Reading CSV
 
 ## Purpose
 
-## Code
-
-## Explanation
-
-## Parameters Used
-
-## Example
+Reads data from a CSV file.
 
 ## Why We Used It
 
-## Alternatives
+CSV is a common file format for data exchange.
 
-## Interview Questions
+## Alternative
+
+Read from Database, JSON, Excel, or Parquet.
+
+## Why Not Used
+
+CSV is simple and suitable for this demo project.
 
 ---
 
-# 11. Cleaning Data
+# 10. Cleaning Data
 
 ## Purpose
 
-## Duplicate Removal
+Removes duplicate records.
 
-## Code
+## Why We Used It
 
-## Explanation
+Duplicate records produce incorrect calculations.
 
-## Example
+## Alternative
 
-## Alternatives
+distinct()
 
-## Interview Questions
+## Why Not Used
+
+dropDuplicates() provides more flexibility and can remove duplicates based on selected columns.
 
 ---
 
-# 12. Data Transformation
+# 11. Data Transformation
 
 ## Purpose
 
-## Code
+Creates a new column called Total_Amount.
 
-## Explanation
+Formula:
 
-## Formula Used
+Total_Amount = Quantity × Price
 
-## Example
+## Why We Used It
 
-## Alternatives
+To calculate total sales for each order.
 
-## Interview Questions
+## Alternative
+
+SQL query
+
+## Why Not Used
+
+PySpark DataFrame API is easier to understand and maintain.
 
 ---
 
-# 13. Aggregation
+# 12. Aggregation
 
 ## Purpose
 
-## groupBy()
+Calculates total sales for each category.
 
-## agg()
+## Why We Used It
 
-## sum()
+Business users usually need category-wise reports.
 
-## alias()
+## Alternative
 
-## Example
+Spark SQL
 
-## Alternatives
+## Why Not Used
 
-## Interview Questions
+DataFrame API is simple and readable.
 
 ---
 
-# 14. Saving Data
+# 13. Saving Data
 
 ## Purpose
 
-## Why Parquet
+Stores processed data.
 
-## Code
+## Why We Used It
 
-## Example
+Parquet is faster and compressed.
 
-## Alternatives
+## Alternative
 
-## Interview Questions
+CSV, JSON, ORC
+
+## Why Not Used
+
+Parquet provides better performance for analytics.
 
 ---
 
-# 15. Main Function
+# 14. Testing
 
 ## Purpose
 
-## Execution Flow
+Checks whether the transformation logic works correctly.
 
-## Why main()
+## Why We Used It
 
-## Alternatives
+Testing helps identify issues before deployment.
 
-## Interview Questions
+## Alternative
 
----
+unittest
 
-# 16. PySpark Functions Used
+## Why Not Used
 
-## SparkSession
-
-## read.csv()
-
-## withColumn()
-
-## col()
-
-## dropDuplicates()
-
-## groupBy()
-
-## agg()
-
-## sum()
-
-## alias()
-
-## show()
-
-## write()
-
-## parquet()
+PyTest is simpler and widely used.
 
 ---
 
-# 17. Unit Testing
-
-## Why Testing
-
-## Test Case
-
-## assert
-
-## Expected Output
-
-## Alternatives
-
-## Interview Questions
-
----
-
-# 18. GitHub Actions
-
-## What is CI
-
-## Workflow
-
-## python.yml Explanation
-
-## Steps
-
-### Checkout
-
-### Setup Python
-
-### Install Dependencies
-
-### Run Tests
-
-## Alternatives
-
-## Interview Questions
-
----
-
-# 19. requirements.txt
+# 15. GitHub Actions
 
 ## Purpose
 
-## Packages Used
+Runs tests automatically whenever code is pushed.
+
+## Why We Used It
+
+It helps verify that the project works correctly after every change.
+
+## Alternative
+
+Jenkins, GitLab CI, Azure DevOps
+
+## Why Not Used
+
+GitHub Actions is free for GitHub repositories and easy to configure.
 
 ---
 
-# 20. .gitignore
+# 16. requirements.txt
 
-## Purpose
+Purpose:
 
-## Files Ignored
+Stores all Python packages required for the project.
 
----
-
-# 21. README.md
-
-## Purpose
-
-## Sections Included
+Packages:
+- pyspark
+- pytest
 
 ---
 
-# 22. Challenges Faced
+# 17. .gitignore
 
-## Problem 1
+Purpose:
 
-## Solution
+Prevents unnecessary files from being uploaded to GitHub.
 
-## Learning
-
----
-
-# 23. Improvements
-
-- Logging
-- Error Handling
-- Delta Lake
-- Databricks
-- Airflow
-- Docker
+Examples:
+- __pycache__/
+- output/
+- *.pyc
 
 ---
 
-# 24. Future Scope
+# 18. Challenges Faced
+
+- Module import issue.
+- GitHub Actions configuration.
+- Python path issue.
+
+These were fixed by updating the project structure and workflow configuration.
 
 ---
 
-# 25. Interview Questions
+# 19. Future Improvements
 
-Basic Questions
-
-Intermediate Questions
-
-Scenario Based Questions
-
----
-
-# 26. Key Learnings
+- Use Delta Lake.
+- Load data from a database.
+- Add logging.
+- Add exception handling.
+- Deploy on Databricks.
 
 ---
 
-# 27. Conclusion
+# 20. Key Learnings
+
+- ETL process.
+- PySpark DataFrame operations.
+- Unit testing using PyTest.
+- GitHub Actions CI.
+- Working with Parquet files.
 
 ---
 
-# 28. References
+# 21. Conclusion
+
+This project demonstrates a complete beginner-friendly ETL pipeline using PySpark. It covers data reading, cleaning, transformation, aggregation, testing, and automated CI using GitHub Actions.
